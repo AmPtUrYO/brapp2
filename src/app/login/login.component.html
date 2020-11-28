@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+
+<ion-item *ngIf="!isVisible">
+  <ion-label position="floating">E-Mail</ion-label>
+  <ion-input type="email" [formControl]="loginEmail"></ion-input>
+</ion-item>
+
+<ion-item *ngIf="!isVisible">
+  <ion-label position="floating">Password</ion-label>
+  <ion-input type="password" [formControl]="loginPassword"></ion-input>
+</ion-item>
+
+<ion-button expand="full" fill="outline" (click)="login()" *ngIf="!isVisible">Login</ion-button>
+
+<ion-button (click)="isVisible = true" *ngIf="!isVisible">register</ion-button>
+
+<ion-item *ngIf="isVisible">
+  <ion-label position="floating">E-Mail</ion-label>
+  <ion-input type="email" [formControl]="registerEmail"></ion-input>
+</ion-item>
+
+<ion-item *ngIf="isVisible">
+  <ion-label position="floating">Password</ion-label>
+  <ion-input type="password" [formControl]="registerPassword"></ion-input>
+</ion-item>
+
+<ion-item *ngIf="isVisible">
+  <ion-label position="floating">repeat Password</ion-label>
+  <ion-input type="password" [formControl]="repeatPassword"></ion-input>
+</ion-item>
+
+<ion-button *ngIf="isVisible" expand="full" fill="outline" (click)="register()" [disabled]="isDisabled">Register</ion-button>
+
+</ion-content>

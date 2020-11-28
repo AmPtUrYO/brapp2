@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Workout Generator</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item (click)="collapse(); $event.stopPropagation()">
+      <ion-icon name="chevron-down-outline"></ion-icon>
+      <ion-label style="margin-left: 5px"> Full Body</ion-label>
+      <ion-checkbox
+        slot="end"
+        [(ngModel)]="fullBody"
+        (ionChange)="checkAll()"
+      ></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ion-item [hidden]="!isCollapsed">
+    <ion-label>Upper Body Push</ion-label>
+    <ion-checkbox
+      slot="end"
+      [(ngModel)]="upperBodyPush"
+      (ionChange)="checkOne()"
+    ></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Upper Body Pull</ion-label>
+    <ion-checkbox
+      slot="end"
+      [(ngModel)]="upperBodyPull"
+      (ionChange)="checkOne()"
+    ></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Lower Body Push</ion-label>
+    <ion-checkbox
+      slot="end"
+      [(ngModel)]="lowerBodyPush"
+      (ionChange)="checkOne()"
+    ></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Lower Body Pull</ion-label>
+    <ion-checkbox
+      slot="end"
+      [(ngModel)]="lowerBodyPull"
+      (ionChange)="checkOne()"
+    ></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Core</ion-label>
+    <ion-checkbox
+      slot="end"
+      [(ngModel)]="core"
+      (ionChange)="checkOne()"
+    ></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Cardio</ion-label>
+    <ion-checkbox slot="end" [(ngModel)]="cardio"></ion-checkbox>
+  </ion-item>
+
+  <ion-button expand="full" (click)="generate()" (click)="randomNumber(finalEx)"
+    >GO</ion-button
+  >
+
+  <ion-list>
+    <ion-item *ngFor="let exercise of finalEx; let i = index">
+      <ion-label> {{ reps[i] }} {{ exercise }} </ion-label>
+      <ion-icon name="refresh-outline" (click)="refresh(i)"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
